@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy &quot;$(SolutionDir)ElwynnAngular\dist&quot; &quot;$(ProjectDir)\Scripts\ElwynnAngular&quot; /Y/I/S" />
+    <Exec Command="xcopy &quot;$(SolutionDir)test-do\dist\test-do&quot; &quot;$(ProjectDir)\wwwroot\TestDo&quot; /Y/I/S" />
   </Target>
 
 </Project>

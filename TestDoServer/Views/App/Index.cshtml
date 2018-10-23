@@ -3,14 +3,37 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="~/TestDo/styles.29019464c392698e2dce.css" rel="stylesheet">
+    <meta charset="utf-8">
     <title>TestDo</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
-    <p>App Page works!!!</p>
+
+<body class="mat-app-background dark-theme">
+    <app-root config="@Html.Raw(ViewBag.jsonConfig)">Loading...</app-root>
+
+
+    @foreach (var f in ViewBag.jsIncludes)
+    {
+        <script type="text/javascript" src="@Html.Raw(f)"></script>
+    }
+
+    @*<script type="text/javascript" src="~/TestDo/main.829a0efdcc8036c7aab2.js"></script>
+    <script type="text/javascript" src="~/TestDo/polyfills.f6ae3e8b63939c618130.js"></script>
+    <script type="text/javascript" src="~/TestDo/runtime.ec2944dd8b20ec099bf3.js"></script>*@
+
+    @*<script type="text/javascript" src="~/TestDo/main.js"></script>
+    <script type="text/javascript" src="~/TestDo/polyfills.js"></script>
+    <script type="text/javascript" src="~/TestDo/runtime.js"></script>
+    <script type="text/javascript" src="~/TestDo/styles.js"></script>
+    <script type="text/javascript" src="~/TestDo/vendor.js"></script>*@
 </body>
 </html>
