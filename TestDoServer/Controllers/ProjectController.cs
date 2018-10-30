@@ -27,7 +27,7 @@ namespace TestDoServer.Controllers
         public ActionResult<List<ToDoProject>> Get()
         {
             var toDoProjects = _context.ToDoProject
-                .Include(p => p.Projects)
+                .Include(p => p.ToDoLists)
                 .ToList();
             Console.WriteLine("Got projects");
             return toDoProjects;
@@ -38,7 +38,7 @@ namespace TestDoServer.Controllers
         public ActionResult<ToDoProject> Get(int id)
         {
             var proj = _context.ToDoProject
-                       .Include(p => p.Projects)
+                       .Include(p => p.ToDoLists)
                        .SingleOrDefault(p => p.Id == id);
 
             if (proj == null) return NotFound();

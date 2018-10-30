@@ -12,6 +12,6 @@ namespace TestDoServer.Models
         public string Owner { get; set; }
         public int Id { get; set; }
 
-        public List<ProjectList> Projects { get; set; }
+        public List<ToDoList> ToDoLists { get; set; }
     }
 }

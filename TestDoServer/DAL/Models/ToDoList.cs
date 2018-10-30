@@ -6,12 +6,13 @@ using TestDoServer.Models;
 
 namespace TestDoServer.DAL.Models
 {
-    public class ProjectList
+    public class ToDoList
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Owner { get; set; }
 
         public ToDoProject Project { get; set; }
-        public List<ListItem> Items { get; set; }
+        public List<ToDoItem> Items { get; set; }
     }
 }

@@ -3,24 +3,39 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestDoServer.Migrations
 {
-    public partial class updateModels : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ProjectList",
+                name: "ToDoProject",
+                columns: table => new
+                {
+                    Name = table.Column<string>(nullable: true),
+                    Owner = table.Column<string>(nullable: true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ToDoProject", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ToDoList",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
+                    Owner = table.Column<string>(nullable: true),
                     ProjectId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectList", x => x.Id);
+                    table.PrimaryKey("PK_ToDoList", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectList_ToDoProject_ProjectId",
+                        name: "FK_ToDoList_ToDoProject_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "ToDoProject",
                         principalColumn: "Id",
@@ -28,44 +43,47 @@ namespace TestDoServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ListItem",
+                name: "ToDoItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Compelte = table.Column<bool>(nullable: false),
-                    ProjectId = table.Column<int>(nullable: true)
+                    ToDoListId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ListItem", x => x.Id);
+                    table.PrimaryKey("PK_ToDoItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ListItem_ProjectList_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "ProjectList",
+                        name: "FK_ToDoItem_ToDoList_ToDoListId",
+                        column: x => x.ToDoListId,
+                        principalTable: "ToDoList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ListItem_ProjectId",
-                table: "ListItem",
-                column: "ProjectId");
+                name: "IX_ToDoItem_ToDoListId",
+                table: "ToDoItem",
+                column: "ToDoListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectList_ProjectId",
-                table: "ProjectList",
+                name: "IX_ToDoList_ProjectId",
+                table: "ToDoList",
                 column: "ProjectId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ListItem");
+                name: "ToDoItem");
 
             migrationBuilder.DropTable(
-                name: "ProjectList");
+                name: "ToDoList");
+
+            migrationBuilder.DropTable(
+                name: "ToDoProject");
         }
     }
 }

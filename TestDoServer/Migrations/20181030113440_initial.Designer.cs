@@ -9,8 +9,8 @@ using TestDoServer.DAL;
 namespace TestDoServer.Migrations
 {
     [DbContext(typeof(TestDoContext))]
-    [Migration("20181018095012_updateModels")]
-    partial class updateModels
+    [Migration("20181030113440_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace TestDoServer.Migrations
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("TestDoServer.DAL.Models.ListItem", b =>
+            modelBuilder.Entity("TestDoServer.DAL.Models.ToDoItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -28,29 +28,31 @@ namespace TestDoServer.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ProjectId");
+                    b.Property<int?>("ToDoListId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ToDoListId");
 
-                    b.ToTable("ListItem");
+                    b.ToTable("ToDoItem");
                 });
 
-            modelBuilder.Entity("TestDoServer.DAL.Models.ProjectList", b =>
+            modelBuilder.Entity("TestDoServer.DAL.Models.ToDoList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Owner");
+
                     b.Property<int?>("ProjectId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("ProjectList");
+                    b.ToTable("ToDoList");
                 });
 
             modelBuilder.Entity("TestDoServer.Models.ToDoProject", b =>
@@ -67,17 +69,17 @@ namespace TestDoServer.Migrations
                     b.ToTable("ToDoProject");
                 });
 
-            modelBuilder.Entity("TestDoServer.DAL.Models.ListItem", b =>
+            modelBuilder.Entity("TestDoServer.DAL.Models.ToDoItem", b =>
                 {
-                    b.HasOne("TestDoServer.DAL.Models.ProjectList", "Project")
+                    b.HasOne("TestDoServer.DAL.Models.ToDoList", "ToDoList")
                         .WithMany("Items")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("ToDoListId");
                 });
 
-            modelBuilder.Entity("TestDoServer.DAL.Models.ProjectList", b =>
+            modelBuilder.Entity("TestDoServer.DAL.Models.ToDoList", b =>
                 {
                     b.HasOne("TestDoServer.Models.ToDoProject", "Project")
-                        .WithMany("Projects")
+                        .WithMany("ToDoLists")
                         .HasForeignKey("ProjectId");
                 });
 #pragma warning restore 612, 618

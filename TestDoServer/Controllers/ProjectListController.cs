@@ -23,9 +23,9 @@ namespace TestDoServer.Controllers
 
         // GET: api/ProjectList
         [HttpGet]
-        public ActionResult<List<ProjectList>> Get()
+        public ActionResult<List<ToDoList>> Get()
         {
-            var projectList = _context.ProjectList
+            var projectList = _context.ToDoList
                 .Include(pl => pl.Items).ToList();
             Console.WriteLine("Got projectList");
 
@@ -34,9 +34,9 @@ namespace TestDoServer.Controllers
 
         // GET: api/ProjectList/5
         [HttpGet("{id}", Name = "Get")]
-        public ActionResult<ProjectList> Get(int id)
+        public ActionResult<ToDoList> Get(int id)
         {
-            var list = _context.ProjectList
+            var list = _context.ToDoList
                 .Include(pl => pl.Items).SingleOrDefault(pl => pl.Id == id);
             return list;
         }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
 using TestDoServer.DAL;
 using TestDoServer.Repository;
 
@@ -57,9 +58,13 @@ namespace TestDoServer
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            /*
+             * Dev specific config here...
+            */
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("AllowAllOrigin");
             }
             else
             {
@@ -72,8 +77,6 @@ namespace TestDoServer
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            app.UseCors("AllowAllOrigin");
 
             app.UseMvc(routes =>
             {

@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace TestDoServer.DAL.Models
 {
-    public class ListItem
+    public class ToDoItem
+
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public bool Compelte { get; set; }
         
-        public ProjectList Project { get; set;}
+        public ToDoList ToDoList { get; set;}
     }
 }
