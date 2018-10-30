@@ -47,12 +47,17 @@ namespace TestDoServer
             services.AddDbContext<TestDoContext>
                 (options => options.UseMySql(connection));
 
-            services.AddCors(options => {
-                options.AddPolicy("AllowAllOrigin", builder => {
-                    builder.AllowAnyOrigin();
-                    builder.AllowAnyHeader();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
                 });
             });
+            //services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +69,7 @@ namespace TestDoServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors("AllowAllOrigin");
+                app.UseCors("MyPolicy");
             }
             else
             {

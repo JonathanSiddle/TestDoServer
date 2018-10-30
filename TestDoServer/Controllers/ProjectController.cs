@@ -67,7 +67,8 @@ namespace TestDoServer.Controllers
             proj.Owner = project.Owner;
 
             _context.SaveChanges();
-            return NoContent();
+            //return the newly updated project
+            return CreatedAtRoute("GetToDoProject", new { id = proj.Id }, proj); ;
         }
 
         // DELETE: api/ApiWithActions/5
@@ -80,7 +81,7 @@ namespace TestDoServer.Controllers
             _context.ToDoProject.Remove(proj);
             _context.SaveChanges();
 
-            return NotFound();
+            return NoContent();
         }
     }
 }
