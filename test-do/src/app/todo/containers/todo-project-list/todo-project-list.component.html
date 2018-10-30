@@ -1,0 +1,5 @@
+<app-todo-project-list-view 
+  [projects]="this.projects"
+  (addedProject)="this.addedNewProject($event)"
+  (editProject)="this.editedProject($event)"
+  (deleteProject)="this.deletedProject($event)"></app-todo-project-list-view>

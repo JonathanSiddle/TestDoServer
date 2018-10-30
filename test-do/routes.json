@@ -1,0 +1,6 @@
+{
+    "/Projects" : "/Projects?_embed=ProjectLists",
+    "/Projects/:id" : "/Projects/:id?_embed=ProjectLists",
+    "/ProjectLists" : "/ProjectLists?_embed=ListItems",
+    "/ProjectLists/:id" : "/ProjectLists/:id?_embed=ListItems"
+}

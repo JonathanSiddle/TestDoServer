@@ -1,0 +1,8 @@
+<app-project-lists-view
+*ngIf="this.projectLists != null"
+[projectLists]="this.projectLists"
+[projectId]="this.projectId"
+(addedNewList)="this.clickedAddNewList($event)"
+(editedList)="this.clickedEditList($event)"
+(deletedList)="this.clickedDeleteList($event)"
+></app-project-lists-view>

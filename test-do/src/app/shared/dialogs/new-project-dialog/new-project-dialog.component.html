@@ -1,0 +1,6 @@
+<mat-form-field color="accent">
+  <input matInput color="accent" placeholder="Name" [(ngModel)]="this.name">
+</mat-form-field>
+<div>
+    <button mat-raised-button (click)="this.clickedSave()" [disabled]="!this.isValid">Save</button>
+</div>

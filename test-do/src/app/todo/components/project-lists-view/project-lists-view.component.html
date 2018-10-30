@@ -1,0 +1,37 @@
+<table mat-table [dataSource]="this.projectLists" class="mat-elevation-z8 full-width">
+
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef [style.flex]="'0 0 70%'"> Name </mat-header-cell>
+        <mat-cell *matCellDef="let list" [style.flex]="'0 0 70%'">
+            <a [routerLink]="['/App/Projects', this.projectId, 'Todo', list.id]"> {{ list.name }} </a>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Owner">
+        <mat-header-cell *matHeaderCellDef> Owner </mat-header-cell>
+        <mat-cell *matCellDef="let list"> {{ list.owner }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef [style.flex]="'0 0 3%'">
+            Edit
+        </mat-header-cell>
+        <mat-cell *matCellDef="let list" [style.flex]="'0 0 3%'">
+            <button mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{listId: list.id}">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row class="tableRow" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table>
+
+<mat-menu class="width-100" #appMenu="matMenu">
+    <ng-template matMenuContent let-listId="listId">
+        <button mat-menu-item align="center" (click)="this.clickedEditList(listId)"> Edit </button>
+        <button mat-menu-item align="center" (click)="this.clickedDeleteList(listId)"> Delete </button>
+    </ng-template>
+</mat-menu>
+
+<button mat-fab color="accent" class="fab" (click)="clickedAddNewList();" >New</button>

@@ -567,5 +567,46 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
+# Angular additions
+
+# Created by https://www.gitignore.io/api/angular
+
+### Angular ###
+## Angular ##
+# compiled output
+/dist
+/tmp
+/app/**/*.js
+/app/**/*.js.map
+
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
+
+test-do/dist/
+test-do/coverage
+
+
+# End of https://www.gitignore.io/api/angular
+
 
 # End of https://www.gitignore.io/api/macos,linux,windows,angular,aspnetcore,visualstudio,visualstudiocode

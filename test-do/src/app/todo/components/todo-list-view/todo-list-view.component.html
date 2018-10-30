@@ -1,0 +1,25 @@
+<form [formGroup]="this.form">
+  <p>
+    <mat-form-field color="accent">
+      <input matInput color="accent" (keyup.enter)="this.enterkeyPressed()" placeholder="New Item" formControlName="itemName" value="">
+      <mat-hint>Unique, between 1 and 50 char</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <button type="button" mat-raised-button color="accent"
+    [disabled]="!this.isFormValid" (click)="this.clickedSave(null)">Save</button>
+  </p>
+</form>
+<h1> {{ this.toDoList.name }} - {{ this.toDoList.owner }}</h1>
+<ul>
+  <li style="list-style:none;margin:15px;" *ngFor="let i of this.toDoList.items">
+    <input type="checkbox" name="i.id" value="i.id" [checked]="i.complete"
+      (click)="this.clickedCheckBox(i.id)"
+    > 
+    <span> {{ i.name }} </span>
+    <!-- <button type="button" mat-raised-button color="accent" style="margin-left: 10px;"
+    (click)="this.clickedEditItem(i.id)">Edit</button> -->
+    <button type="button" mat-raised-button color="accent" style="margin-left: 10px;"
+    (click)="this.clickedDeleteItem(i.id)">Delete</button>
+  </li>
+</ul>
