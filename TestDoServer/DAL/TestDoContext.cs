@@ -16,5 +16,6 @@ namespace TestDoServer.DAL
 
         public DbSet<ToDoProject> ToDoProject { get; set; }
         public DbSet<ToDoList> ToDoList { get; set; }
+        public DbSet<ToDoItem> ToDoItem { get; set; }
     }
 }

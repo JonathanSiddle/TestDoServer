@@ -29,7 +29,7 @@ namespace TestDoServer.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Owner = table.Column<string>(nullable: true),
-                    ProjectId = table.Column<int>(nullable: true)
+                    ProjectId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,7 +39,7 @@ namespace TestDoServer.Migrations
                         column: x => x.ProjectId,
                         principalTable: "ToDoProject",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,8 +49,8 @@ namespace TestDoServer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    Compelte = table.Column<bool>(nullable: false),
-                    ToDoListId = table.Column<int>(nullable: true)
+                    Complete = table.Column<bool>(nullable: false),
+                    ToDoListId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,7 +60,7 @@ namespace TestDoServer.Migrations
                         column: x => x.ToDoListId,
                         principalTable: "ToDoList",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

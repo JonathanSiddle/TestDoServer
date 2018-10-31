@@ -65,6 +65,7 @@ export class ProjectListsViewComponent implements OnInit {
         if (returnData.projectName != null) {
           // create a uniqueId using projectId and list count
           const newList = new ToDoList(returnData.projectName, 'Jonathan', +this.projectId);
+          // newList = 
           console.dir(newList);
           this.raiseAddListEvent(newList);
         }

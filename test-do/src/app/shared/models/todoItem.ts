@@ -4,6 +4,7 @@ export class ToDoItem {
     constructor(
         public name: string = '',
         public complete: boolean = false,
-        public toDoList?: ToDoList,
-        public id?: number) {}
+        public toDoListId: number,
+        public id?: number,
+        public toDoList?: ToDoList) {}
 }

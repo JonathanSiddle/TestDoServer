@@ -57,16 +57,13 @@ export class TodoListViewComponent implements OnInit {
       const newEditItem = new ToDoItem(
         item.name,
         item.complete,
-        item.toDoList,
+        item.toDoListId,
         item.id);
 
         console.log('Raising edit event');
         this.raiseEditEvent(newEditItem);
     } else {
-      const newItem = new ToDoItem();
-      newItem.name = this.itemName.value;
-      newItem.complete = false;
-      newItem.toDoList = this.toDoList;
+      const newItem = new ToDoItem(this.itemName.value, false, this.toDoList.id);
 
       console.log('Raising new event');
       this.raiseAddNewEvent(newItem);
