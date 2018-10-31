@@ -14,8 +14,7 @@
 <ul>
   <li style="list-style:none;margin:15px;" *ngFor="let i of this.toDoList.items">
     <input type="checkbox" name="i.id" value="i.id" [checked]="i.complete"
-      (click)="this.clickedCheckBox(i.id)"
-    > 
+      (click)="this.clickedCheckBox(i.id)"> 
     <span> {{ i.name }} </span>
     <!-- <button type="button" mat-raised-button color="accent" style="margin-left: 10px;"
     (click)="this.clickedEditItem(i.id)">Edit</button> -->

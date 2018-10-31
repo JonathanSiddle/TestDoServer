@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'App/Projects/:id/Lists', component: ProjectListsComponent},
   {path: 'App/Projects', component: TodoProjectListComponent},
   {path: 'App/SharedProjects', component: SharedProjectListComponent},
-  {path: '', redirectTo: 'App/Projects', pathMatch: 'full'},
+  {path: '**', redirectTo: 'App/Projects', pathMatch: 'full'},
 ];
 
 @NgModule({

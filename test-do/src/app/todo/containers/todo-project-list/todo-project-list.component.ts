@@ -42,6 +42,7 @@ export class TodoProjectListComponent implements OnInit {
     this.projectService.create(newProj).subscribe(
       returnedProjects => {
         console.log('Got projects');
+        console.dir(returnedProjects);
         this.projects.push(returnedProjects);
         this.projectListView.refreshData();
       },

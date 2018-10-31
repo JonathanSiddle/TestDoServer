@@ -6,10 +6,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProjectService } from './shared/services/projects.service';
 import { ProjectListsService } from './shared/services/projectLists.service';
 import { ToDoItemService } from './shared/services/toDoItem.service';
+import { FakeBackendInterceptor } from './shared/services/fakeBackendInterceptor.service';
+import { UseFakeBackendService } from './shared/services/useFakeBackend.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ToDoItemService } from './shared/services/toDoItem.service';
     ProjectListsService,
     ToDoItemService,
     BaseUrlService,
+    UseFakeBackendService,
+    { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },
     ConfigDataFetcherService
   ],
   bootstrap: [AppComponent]
