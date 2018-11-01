@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using TestDoServer.Util;
 
 namespace TestDoServer.Controllers
 {
@@ -29,17 +30,33 @@ namespace TestDoServer.Controllers
                 " &quot;baseUrl&quot; : &quot;" + System.Web.HttpUtility.HtmlEncode(apiUrl) + "&quot;" +
                 "}";
 
-            var jsPath = _hostingEnvironment.WebRootPath + "\\TestDo"; // TODO: make platform independent
-            var jsFiles = Directory.GetFiles(jsPath).Where(f => f.EndsWith(".js")).ToList();
+            var localPath = _hostingEnvironment.WebRootPath + "\\TestDo"; // TODO: make platform independent
+            var jsFiles = LoadStaticLocalFiles(localPath, "js");
+            var cssFiles = LoadStaticLocalFiles(localPath, "css");
 
-            var justFiles = jsFiles
-                .Select(f => f.Substring(f.LastIndexOf("\\"), (f.Length - f.LastIndexOf("\\"))).Replace("\\", ""))
-                .Select(f => "/TestDo/" + f)
-                .ToList();
+            jsFiles.Sort(AngularImportsSorter.CompareImports);
 
-            ViewBag.jsIncludes = justFiles;
+            ViewBag.cssIncludes = cssFiles;
+            ViewBag.jsIncludes = jsFiles;
             ViewBag.jsonConfig = jsonConfigString;
             return View("Index");
         }
+        
+        public List<string> LoadStaticLocalFiles(string localPath, string extension)
+        {
+            var localFiles = new List<string>();
+
+            foreach (string file in Directory.EnumerateFiles(localPath, $@"*.{extension}", SearchOption.AllDirectories))
+            {
+                localFiles.Add(file);
+            }
+
+            // TODO: Make this more efficient...
+            return localFiles
+            .Select(f => f.Substring(f.LastIndexOf("\\wwwroot"), (f.Length - f.LastIndexOf("\\wwwroot"))))
+            .Select(f => f.Replace("\\wwwroot", ""))
+            .ToList();
+        }
+
     }
 }

@@ -30,3 +30,4 @@ C:\Users\jonat\source\repos\TestDoServer\TestDoServer\obj\Debug\netcoreapp2.1\Te
 C:\Users\jonat\source\repos\TestDoServer\TestDoServer\obj\Debug\netcoreapp2.1\TestDoServer.pdb
 C:\Users\jonat\source\repos\TestDoServer\TestDoServer\obj\Debug\netcoreapp2.1\TestDoServer.csproj.CopyComplete
 C:\Users\jonat\source\repos\TestDoServer\TestDoServer\obj\Debug\netcoreapp2.1\Razor\Views\App\Index.g.cshtml.cs
+C:\Users\jonat\source\repos\TestDoServer\TestDoServer\obj\Debug\netcoreapp2.1\TestDoServer.csprojAssemblyReference.cache
