@@ -58,6 +58,28 @@ bld/
 [Oo]bj/
 [Ll]og/
 
+[d]ebug/
+[d]ebugPublic/
+[r]elease/
+[r]eleases/
+x64/
+x86/
+bld/
+[b]in/
+[o]bj/
+[l]og/
+
+[D]ebug/
+[D]ebugPublic/
+[R]elease/
+[R]eleases/
+x64/
+x86/
+bld/
+[B]in/
+[O]bj/
+[L]og/
+
 # Visual Studio 2015 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot

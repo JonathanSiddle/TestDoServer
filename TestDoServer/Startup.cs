@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using TestDoServer.DAL;
 using TestDoServer.Repository;
 
@@ -22,26 +24,75 @@ namespace TestDoServer
 
         public IConfiguration Configuration { get; }
 
+        // work-in-progress see: http://docs.identityserver.io/en/latest/quickstarts/3_interactive_login.html
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddAuthentication(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("Cookies")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.SignInScheme = "Cookies";
+                options.Authority = "https://localhost:5001";
+                //options.RequireHttpsMetadata = true;
+                options.ClientId = "mvc";
+                options.ClientSecret = "secret";
+                options.ResponseType = "code id_token";
+                options.SaveTokens = true;
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("offline_access");
             });
-            
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
+
+            //services.AddAuthentication("Bearer")
+            //    .AddIdentityServerAuthentication(options =>
+            //    {
+            //        options.Authority = "https://localhost:5001";
+            //        options.RequireHttpsMetadata = true;
+            //        options.ApiName = "api1";
+            //    });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddMvc().AddJsonOptions(options => {
+            services.AddMvc().AddJsonOptions(options =>
+            {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            //var connection = @"Server=(localdb)\mssqllocaldb;Database=TestDo;Trusted_Connection=True;ConnectRetryCount=0";
-            var connection = @"Server = localhost; User Id = root; Password = admin; Database = TestDo";
             
+
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultScheme = "Cookies";
+            //    options.DefaultChallengeScheme = "oidc";
+            //})
+            //.AddCookie("Cookies")
+            //.AddOpenIdConnect("oidc", options =>
+            //{
+            //    options.SignInScheme = "Cookies";
+
+            //    options.Authority = "https://localhost:5001";
+            //    options.RequireHttpsMetadata = true;
+            //    options.ClientId = "mvc";
+            //    options.SaveTokens = true;
+            //});
+
+            //TODO: Fix this in a real application
+            var connection = @"Server = localhost; User Id = root; Password = admin; Database = TestDo";
+
             //services.AddDbContext<TestDoContext>
             //    (options => options.UseSqlServer(connection));
             services.AddDbContext<TestDoContext>
@@ -80,8 +131,11 @@ namespace TestDoServer
             //set up database connection 
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
+
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
@@ -89,6 +143,7 @@ namespace TestDoServer
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

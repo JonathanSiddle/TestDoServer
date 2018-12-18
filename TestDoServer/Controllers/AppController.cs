@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using TestDoServer.Util;
@@ -18,6 +19,7 @@ namespace TestDoServer.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var httpType = Request.HttpContext.Request.Scheme;

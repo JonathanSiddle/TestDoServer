@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDoServer", "TestDoServer\TestDoServer.csproj", "{597A9686-D61F-4ABE-BA1E-F9AB167AEF57}"
 EndProject
@@ -28,6 +28,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "test-do", "..\..\..\Documen
 		SlnRelativePath = "..\..\..\Documents\test-do\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestIDP", "TestIDP\TestIDP.csproj", "{5CD72885-D2E6-4AB7-8DF4-A5CC0066C09F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0CB74237-9BD4-4DAF-9D9C-839633435EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CB74237-9BD4-4DAF-9D9C-839633435EFF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CB74237-9BD4-4DAF-9D9C-839633435EFF}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5CD72885-D2E6-4AB7-8DF4-A5CC0066C09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CD72885-D2E6-4AB7-8DF4-A5CC0066C09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CD72885-D2E6-4AB7-8DF4-A5CC0066C09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CD72885-D2E6-4AB7-8DF4-A5CC0066C09F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
