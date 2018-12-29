@@ -28,7 +28,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "test-do", "..\..\..\Documen
 		SlnRelativePath = "..\..\..\Documents\test-do\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestIDP", "TestIDP\TestIDP.csproj", "{5CD72885-D2E6-4AB7-8DF4-A5CC0066C09F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestIDP", "TestIDP\TestIDP.csproj", "{5CD72885-D2E6-4AB7-8DF4-A5CC0066C09F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D830F5CB-FFEB-4F72-A88E-9F1C0B41EDB6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
